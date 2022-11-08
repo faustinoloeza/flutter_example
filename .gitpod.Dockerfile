@@ -9,6 +9,7 @@ ENV PATH="$HOME/flutter/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_
 USER root
 RUN install-packages openjdk-8-jdk -y \
         libgtk-3-dev \
+        cmake \
         libnss3-dev \
         fonts-noto \
         fonts-noto-cjk \
