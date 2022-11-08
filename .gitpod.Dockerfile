@@ -25,7 +25,7 @@ RUN install-packages openjdk-8-jdk -y \
 USER gitpod
 RUN wget -q "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}.tar.xz" -O - \
     | tar xpJ -C "$HOME" \
-    && _file_name="commandlinetools-linux-8092744_latest.zip" && wget "https://dl.google.com/android/repository/$_file_name" \
+    && _file_name="commandlinetools-linux-8512546_latest.zip" && wget "https://dl.google.com/android/repository/$_file_name" \
     && unzip "$_file_name" -d $ANDROID_HOME \
     && rm -f "$_file_name" \
     && mkdir -p $ANDROID_HOME/cmdline-tools/latest \
