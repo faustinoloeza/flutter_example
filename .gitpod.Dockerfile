@@ -13,7 +13,11 @@ RUN install-packages openjdk-8-jdk -y \
         libnss3-dev \
         fonts-noto \
         fonts-noto-cjk \
-    && update-java-alternatives --set java-1.8.0-openjdk-amd64
+    && update-java-alternatives --set java-1.8.0-openjdk-amd64 \
+    && wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add - \
+    && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list \
+    && apt update \
+    && apt install google-chrome-stable
 
 
 # Insall flutter and dependencies
@@ -31,9 +35,4 @@ RUN wget -q "https://storage.googleapis.com/flutter_infra_release/releases/stabl
     && yes | flutter doctor --android-licenses \
     && flutter doctor
 
-# Insall flutter and dependencies
-USER root
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
-    && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list \
-    && apt update \
-    && apt install google-chrome-stable
+
