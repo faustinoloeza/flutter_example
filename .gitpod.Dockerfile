@@ -16,8 +16,8 @@ RUN install-packages openjdk-8-jdk -y \
     && update-java-alternatives --set java-1.8.0-openjdk-amd64 \
     && wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add - \
     && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list \
-    && apt update \
-    && apt install google-chrome-stable
+    && update \
+    && install google-chrome-stable
 
 
 # Insall flutter and dependencies
