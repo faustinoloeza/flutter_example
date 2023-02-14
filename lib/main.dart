@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,8 +10,6 @@ void main() {
 void myLog(context) async {
   Location location = new Location();
   //location.enableBackgroundMode(enable: true);
-  //location.enableBackgroundMode(enable: true);
-
   bool _serviceEnabled;
   PermissionStatus _permissionGranted;
   LocationData _locationData;
@@ -112,20 +112,50 @@ void showAlertDialog(BuildContext context, dynamic latitud, dynamic longitud) {
     onPressed: () {},
   );
 
+  FlutterMap mapa = FlutterMap(
+    options: MapOptions(
+      center: LatLng(21.166304, -86.8677313),
+      zoom: 12.2,
+      maxZoom: 18.4,
+    ),
+    nonRotatedChildren: [
+      AttributionWidget.defaultWidget(
+        source: 'OpenStreetMap contributors',
+        onSourceTapped: null,
+      ),
+    ],
+    children: [
+      TileLayer(
+        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        userAgentPackageName: 'com.example.app',
+      ),
+      MarkerLayer(
+        markers: [
+          Marker(
+            point: LatLng(latitud, longitud),
+            width: 80,
+            height: 80,
+            builder: (context) => Image.network(
+                "https://cdn-icons-png.flaticon.com/128/1397/1397898.png"),
+          ),
+        ],
+      ),
+    ],
+  );
+
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("My title"),
-    content: Text('$latitud, $longitud'),
+    content: mapa,
     actions: [
       okButton,
     ],
   );
-
   // show the dialog
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return alert;
+      return mapa;
     },
   );
 }
