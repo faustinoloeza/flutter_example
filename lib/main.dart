@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:maxiapp/saturapp.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(SaturAPP());
 }
 
 void myLog(context) async {
@@ -79,7 +80,18 @@ class MyHomePage extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(8),
-              child: Center(child: Text(title)),
+              child: TextButton(
+                onPressed: () => {myLog(context)},
+                child: const Text(
+                  "Login",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontStyle: FontStyle.italic,
+                      fontFamily: 'Open Sans',
+                      fontSize: 24),
+                ),
+              ),
               color: Colors.yellow[400],
             ),
             Container(
