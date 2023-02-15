@@ -3,7 +3,7 @@ import 'package:location/location.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-
+import 'package:maxiapp/utils.dart';
 import 'google.dart';
 
 class SaturMap extends StatelessWidget {
@@ -68,14 +68,30 @@ class SaturMap extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        tooltip: "Show my location",
-        backgroundColor: Colors.green,
-        child: const Icon(Icons.location_on),
-      ),
+      floatingActionButton: myWidget(),
+    );
+  }
+}
+
+Widget myWidget() {
+  String platform = detectPlatform();
+  if (platform != 'linux') {
+    return FloatingActionButton(
+      onPressed: () {
+        // Add your onPressed code here!
+      },
+      tooltip: "Center map",
+      backgroundColor: Colors.green,
+      child: const Icon(Icons.location_on),
+    );
+  } else {
+    return FloatingActionButton(
+      onPressed: () {
+        // Add your onPressed code here!
+      },
+      tooltip: "Show my location",
+      backgroundColor: Color.fromARGB(255, 189, 91, 255),
+      child: const Icon(Icons.house),
     );
   }
 }

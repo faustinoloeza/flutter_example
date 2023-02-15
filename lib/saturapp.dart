@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:maxiapp/utils.dart';
 import 'saturmap.dart';
 
 class SaturAPP extends StatelessWidget {
@@ -27,6 +27,7 @@ class HomeSatur extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String platform = detectPlatform();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -43,7 +44,9 @@ class HomeSatur extends StatelessWidget {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(8),
-              child: Center(child: Text(title)),
+              child: Center(
+                child: Text(platform),
+              ),
               color: Colors.orange[400],
             ),
             Container(
