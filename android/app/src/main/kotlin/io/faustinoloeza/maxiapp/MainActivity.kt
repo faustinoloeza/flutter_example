@@ -1,6 +1,6 @@
-
 package io.faustinoloeza.maxiapp
 
-class MainActivity {
+import io.flutter.embedding.android.FlutterActivity
 
+class MainActivity: FlutterActivity() {
 }
